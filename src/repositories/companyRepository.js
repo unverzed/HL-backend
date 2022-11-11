@@ -8,5 +8,11 @@ export async function postCompany(id, data) {
   );
 }
 
-const companyRepository = { postCompany };
+export async function getCompany(id) {
+  const query = await db.query(`SELECT * FROM company WHERE "userId" = $1`, [id] );
+  const result = query.rows;
+  return result;
+}
+
+const companyRepository = { postCompany, getCompany };
 export default companyRepository;
