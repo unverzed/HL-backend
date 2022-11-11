@@ -10,5 +10,18 @@ export async function signup(user) {
   await userRepository.signup(user);
 }
 
-const authServices = { signup };
+export async function login(user) {
+
+    const query = await userRepository.checkEmail(user);
+    const result = query.rows[0];
+
+  const token = jwt.sign(
+    { id: result.id, email: result.email },
+    process.env.JWT_SECRET,
+    { expiresIn: process.env.JWT_EXPIRES_IN }
+  );
+  return { token };
+}
+
+const authServices = { signup, login };
 export default authServices;

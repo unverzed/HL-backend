@@ -8,8 +8,9 @@ export async function signup(user) {
   );
 }
 
-export async function checkEmail(email) {
-  return db.query("SELECT INTO users WHERE email = $1",[email]);
+export async function checkEmail(user) {
+  const { email } = user;
+  return db.query("SELECT FROM users WHERE email = $1", [email]);
 }
 
 const userRepository = { signup, checkEmail };
