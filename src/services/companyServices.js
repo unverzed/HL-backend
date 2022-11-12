@@ -19,5 +19,10 @@ export async function updateById(id, data){
   return await companyRepository.updateCompany(id, data);
 }
 
-const companyServices = { insert, get, getById, updateById };
+export async function deleteById(id){
+  return await companyRepository.deleteCompany(id);
+}
+
+
+const companyServices = { insert, get, getById, updateById, deleteById };
 export default companyServices;

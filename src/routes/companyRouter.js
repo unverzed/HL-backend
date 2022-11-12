@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { insertCompany, getCompany, getCompanyById, updateCompany } from "../controllers/companyController.js";
+import { insertCompany, getCompany, getCompanyById, updateCompany, deleteCompany } from "../controllers/companyController.js";
 import schemaValidator from "../middlewares/schemaValidator.js";
 import { companySchema } from "../schemas/companySchema.js";
 import { tokenValidator } from "../middlewares/tokenValidate.js";
@@ -10,6 +10,6 @@ companyRouter.post("/company", tokenValidator, schemaValidator(companySchema), i
 companyRouter.get("/company", tokenValidator, getCompany);
 companyRouter.get("/company/:id", tokenValidator, getCompanyById);
 companyRouter.put("/company/:id", tokenValidator, updateCompany);
-companyRouter.delete("/company");
+companyRouter.delete("/company/:id", tokenValidator, deleteCompany);
 
 export default companyRouter;

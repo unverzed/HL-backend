@@ -30,5 +30,19 @@ export async function updateCompany(id, data) {
   );
 }
 
-const companyRepository = { postCompany, getCompany, getCompanyById, updateCompany };
+export async function deleteCompany(id) {
+  return db.query(
+    `
+    DELETE FROM company WHERE id = $1`,
+    [id]
+  );
+}
+
+const companyRepository = {
+  postCompany,
+  getCompany,
+  getCompanyById,
+  updateCompany,
+  deleteCompany
+};
 export default companyRepository;

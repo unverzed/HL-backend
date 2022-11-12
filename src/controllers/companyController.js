@@ -25,3 +25,10 @@ export async function updateCompany(req, res) {
   await companyServices.getById(id, data);
   res.sendStatus(201);
 }
+
+export async function deleteCompany(req, res) {
+  const id = parseInt(req.params.id);
+  await companyServices.deleteById(id);
+  console.log(id)
+  res.sendStatus(200);
+}
