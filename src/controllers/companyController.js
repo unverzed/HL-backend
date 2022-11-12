@@ -22,7 +22,7 @@ export async function getCompanyById(req, res) {
 export async function updateCompany(req, res) {
   const id = parseInt(req.params.id);
   const data = req.body;
-  await companyServices.getById(id, data);
+  await companyServices.updateById(id, data);
   res.sendStatus(201);
 }
 

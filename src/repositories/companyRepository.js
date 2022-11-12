@@ -25,7 +25,7 @@ export async function getCompanyById(id) {
 export async function updateCompany(id, data) {
   const { name, CNPJ, description } = data;
   return db.query(
-    `UPDATE company SET name = $1, CNPJ = $2 description = $3 WHERE id = $4`,
+    `UPDATE company SET name = $1, "CNPJ" = $2, description = $3 WHERE id = $4`,
     [name, CNPJ, description, id]
   );
 }
