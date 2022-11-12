@@ -11,6 +11,9 @@ export default async function errorHandler(error) {
   if (error.type === "unprocessableentity") {
     return res.status(422).send(error.message);
   }
+  if (error.type === "notfound") {
+    return res.status(404).send(error.message);
+  }
   console.log(error.message);
   return res.sendStatus(500);
 }
