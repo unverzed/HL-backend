@@ -17,13 +17,18 @@ export async function getCompany(id) {
 }
 
 export async function getCompanyById(id) {
-  const query = await db.query(`SELECT * FROM company WHERE id = $1`, [
-    id,
-  ]);
+  const query = await db.query(`SELECT * FROM company WHERE id = $1`, [id]);
   const result = query.rows[0];
   return result;
 }
 
+export async function updateCompany(id, data) {
+  const { name, CNPJ, description } = data;
+  return db.query(
+    `UPDATE company SET name = $1, CNPJ = $2 description = $3 WHERE id = $4`,
+    [name, CNPJ, description, id]
+  );
+}
 
-const companyRepository = { postCompany, getCompany, getCompanyById };
+const companyRepository = { postCompany, getCompany, getCompanyById, updateCompany };
 export default companyRepository;

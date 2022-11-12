@@ -18,3 +18,10 @@ export async function getCompanyById(req, res) {
   const company = await companyServices.getById(id);
   res.status(200).send(company);
 }
+
+export async function updateCompany(req, res) {
+  const id = parseInt(req.params.id);
+  const data = req.body;
+  await companyServices.getById(id, data);
+  res.sendStatus(201);
+}
