@@ -1,4 +1,4 @@
-export default async function errorHandler(error) {
+export default async function errorHandler(error, req, res, next) {
   if (error.type === "conflict") {
     return res.status(409).send(error.message);
   }

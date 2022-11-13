@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { insertResponsible } from "../controllers/responsibleController.js";
+import { insertResponsible, getResponsible } from "../controllers/responsibleController.js";
 import { tokenValidator } from "../middlewares/tokenValidate.js";
 import schemaValidator from "../middlewares/schemaValidator.js";
 import { responsibleSchema } from "../schemas/responsibleSchema.js";
@@ -12,5 +12,7 @@ responsibleRouter.post(
   schemaValidator(responsibleSchema),
   insertResponsible
 );
+
+responsibleRouter.get("/responsibles/:id", tokenValidator, getResponsible);
 
 export default responsibleRouter;

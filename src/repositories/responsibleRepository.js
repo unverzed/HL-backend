@@ -8,5 +8,14 @@ export async function postResponsible(id, data) {
   );
 }
 
-const responsibleRepository = { postResponsible };
+export async function getResponsibles(id) {
+  const query = await db.query(
+    `SELECT * FROM responsibles WHERE "idCompany" = $1`,
+    [id]
+  );
+  const result = query.rows[0];
+  return result;
+}
+
+const responsibleRepository = { postResponsible, getResponsibles };
 export default responsibleRepository;
