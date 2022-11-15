@@ -9,3 +9,6 @@ authRouter.post("/signup", schemaValidator(signupSchema), signup);
 authRouter.post("/login", schemaValidator(loginSchema), login);
 
 export default authRouter;
+
+
+

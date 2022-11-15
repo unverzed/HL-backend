@@ -17,8 +17,14 @@ export async function getCompany(id) {
 }
 
 export async function getCompanyById(id) {
-  const query = await db.query(`SELECT * FROM company WHERE id = $1`, [id]);
-  const result = query.rows[0];
+  const query = await db.query(
+    `SELECT company.id as "companyId", "userId", company.name as "companyName", "CNPJ", description, r.id as "responsibleId", r.name as "responsibleName", phone, r."CEP" as "responsiblesCEP", "isMainResponsible" FROM company
+    LEFT JOIN responsibles as r ON company.id = r."idCompany"
+    WHERE company.id = $1
+    `,
+    [id]
+  );
+  const result = query.rows;
   return result;
 }
 
@@ -43,6 +49,6 @@ const companyRepository = {
   getCompany,
   getCompanyById,
   updateCompany,
-  deleteCompany
+  deleteCompany,
 };
 export default companyRepository;
