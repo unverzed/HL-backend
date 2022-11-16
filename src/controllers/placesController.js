@@ -3,7 +3,7 @@ import placesServices from "../services/placesServices.js";
 export async function sendPlaces(req, res) {
   const data = req.body;
   const companyId = parseInt(req.params.id);
-  const responsibleId = parseInt(req.params.id);
+  const responsibleId = parseInt(req.params.id2);
   await placesServices.insertPlaces(companyId, responsibleId, data);
   res.sendStatus(201);
 }

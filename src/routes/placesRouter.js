@@ -7,7 +7,7 @@ import { placesSchema } from "../schemas/placesSchema.js";
 const placesRouter = Router();
 
 placesRouter.post(
-  "/places/:id?/responsibles/:id?",
+  "/places/:id/responsibles/:id2",
   tokenValidator,
   schemaValidator(placesSchema),
   sendPlaces
