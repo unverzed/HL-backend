@@ -4,5 +4,9 @@ async function insertPlaces(id, data) {
   await placesRepository.postPlaces(id, data);
 }
 
-const placesService = { insertPlaces };
+async function showPlaces(id) {
+  return await placesRepository.getPlaces(id);
+}
+
+const placesService = { insertPlaces, showPlaces };
 export default placesService;

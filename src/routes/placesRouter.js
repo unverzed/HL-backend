@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { sendPlaces } from "../controllers/placesController.js";
+import { sendPlaces, allPlaces } from "../controllers/placesController.js";
 import schemaValidator from "../middlewares/schemaValidator.js";
 import { tokenValidator } from "../middlewares/tokenValidate.js";
 import { placesSchema } from "../schemas/placesSchema.js";
@@ -12,5 +12,7 @@ placesRouter.post(
   schemaValidator(placesSchema),
   sendPlaces
 );
+
+placesRouter.get("/places/:id", tokenValidator, allPlaces);
 
 export default placesRouter;
