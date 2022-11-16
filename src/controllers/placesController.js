@@ -2,8 +2,9 @@ import placesServices from "../services/placesServices.js";
 
 export async function sendPlaces(req, res) {
   const data = req.body;
-  const id = parseInt(req.params.id);
-  await placesServices.insertPlaces(id, data);
+  const companyId = parseInt(req.params.id);
+  const responsibleId = parseInt(req.params.id);
+  await placesServices.insertPlaces(companyId, responsibleId, data);
   res.sendStatus(201);
 }
 

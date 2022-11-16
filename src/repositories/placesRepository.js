@@ -1,10 +1,11 @@
 import db from "../database/db.js";
 
-async function postPlaces(id, data) {
-  const { name, CEP, idResponsible } = data;
+async function postPlaces(companyId, responsibleId, data) {
+  const { name, CEP } = data;
+  console.log(companyId, responsibleId)
   return db.query(
-    `INSERT INTO places ( name, "CEP", "idResponsible", "idCompany") VALUES ($1, $2, $3, $4)`,
-    [name, CEP, idResponsible, id]
+    `INSERT INTO places ( name, "CEP", "idCompany", "idResponsible") VALUES ($1, $2, $3, $4)`,
+    [name, CEP, companyId, responsibleId]
   );
 }
 
