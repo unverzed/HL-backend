@@ -5,13 +5,7 @@ export async function insert(id, data) {
 }
 
 export async function get(id) {
-  const responsible = await responsibleRepository.getResponsibles(id);
-  if(!responsible){
-    throw {
-      type: "notfound",
-      message: "Can't find responsibles",
-    };
-  }
+  return await responsibleRepository.getResponsibles(id);
 }
 
 const responsibleServices = { insert, get };

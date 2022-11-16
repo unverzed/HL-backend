@@ -7,7 +7,7 @@ import { responsibleSchema } from "../schemas/responsibleSchema.js";
 const responsibleRouter = Router();
 
 responsibleRouter.post(
-  "/company/:id",
+  "/responsible/:id",
   tokenValidator,
   schemaValidator(responsibleSchema),
   insertResponsible

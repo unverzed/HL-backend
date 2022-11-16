@@ -26,6 +26,7 @@ export async function getCompanyById(id) {
   );
   const result = query.rows;
   return result;
+
 }
 
 export async function updateCompany(id, data) {
