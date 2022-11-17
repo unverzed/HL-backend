@@ -2,7 +2,6 @@ import db from "../database/db.js";
 
 async function postPlaces(companyId, responsibleId, data) {
   const { name, CEP } = data;
-  console.log(companyId, responsibleId)
   return db.query(
     `INSERT INTO places ( name, "CEP", "idCompany", "idResponsible") VALUES ($1, $2, $3, $4)`,
     [name, CEP, companyId, responsibleId]
@@ -21,5 +20,13 @@ async function getPlaces(id) {
   return result;
 }
 
-const placesRepository = { postPlaces, getPlaces };
+export async function deletePlaces(id) {
+  return db.query(
+    `
+    DELETE FROM places WHERE id = $1`,
+    [id]
+  );
+}
+
+const placesRepository = { postPlaces, getPlaces, deletePlaces  };
 export default placesRepository;

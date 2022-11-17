@@ -8,5 +8,9 @@ async function showPlaces(id) {
   return await placesRepository.getPlaces(id);
 }
 
-const placesService = { insertPlaces, showPlaces };
+export async function deleteById(id) {
+  return await placesRepository.deletePlaces(id);
+}
+
+const placesService = { insertPlaces, showPlaces, deleteById  };
 export default placesService;
