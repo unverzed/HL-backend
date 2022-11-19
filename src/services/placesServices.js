@@ -5,6 +5,14 @@ async function insertPlaces(companyId, responsibleId, data) {
 }
 
 async function showPlaces(id) {
+  const query = await placesRepository.getPlaces(id);
+  if (query == 0) {
+    throw {
+      type: "notfound",
+      message: "place don't exist",
+    };
+  }
+
   return await placesRepository.getPlaces(id);
 }
 

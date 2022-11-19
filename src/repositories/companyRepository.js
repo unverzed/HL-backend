@@ -18,7 +18,7 @@ export async function getCompany(id) {
 
 export async function getCompanyById(id) {
   const query = await db.query(
-    `SELECT company.id as "companyId", "userId", company.name as "companyName", "CNPJ", description, r.id as "responsibleId", r.name as "responsibleName", phone, r."CEP" as "responsiblesCEP", "isMainResponsible" FROM company
+    `SELECT company.id as "companyId", "userId", company.name as "companyName", "CNPJ", description, r.id as "responsibleId", r.name as "responsibleName", phone, r."CEP" as "responsiblesCEP", r.neighborhood, r.street, r.number, r.city, r.state, "isMainResponsible" FROM company
     LEFT JOIN responsibles as r ON company.id = r."idCompany"
     WHERE company.id = $1
     `,

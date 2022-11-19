@@ -1,16 +1,26 @@
 import db from "../database/db.js";
 
 async function postPlaces(companyId, responsibleId, data) {
-  const { name, CEP } = data;
+  const { name, CEP, neighborhood, street, number, city, state } = data;
   return db.query(
-    `INSERT INTO places ( name, "CEP", "idCompany", "idResponsible") VALUES ($1, $2, $3, $4)`,
-    [name, CEP, companyId, responsibleId]
+    `INSERT INTO places ( name, "CEP", neighborhood, street, number, city, state, "idCompany", "idResponsible") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
+    [
+      name,
+      CEP,
+      neighborhood,
+      street,
+      number,
+      city,
+      state,
+      companyId,
+      responsibleId,
+    ]
   );
 }
 
 async function getPlaces(id) {
   const query = await db.query(
-    `SELECT p.id as "placesId", "userId", p.name as "placesName", p."CEP", p."idResponsible" FROM company
+    `SELECT p.id as "placesId", "userId", p.name as "placesName", p."CEP", p.neighborhood, p.street, p.number, p.city, p.state, p."idResponsible" FROM company
       LEFT JOIN places as p ON company.id = p."idCompany"
           WHERE company.id = $1
       `,
@@ -28,5 +38,5 @@ export async function deletePlaces(id) {
   );
 }
 
-const placesRepository = { postPlaces, getPlaces, deletePlaces  };
+const placesRepository = { postPlaces, getPlaces, deletePlaces };
 export default placesRepository;

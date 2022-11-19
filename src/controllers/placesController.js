@@ -16,7 +16,6 @@ export async function allPlaces(req, res) {
 
 export async function deletePlace(req, res) {
   const id = parseInt(req.params.id);
-  await placesService.deleteById(id);
-  console.log(id);
+  await placesServices.deleteById(id);
   res.sendStatus(200);
 }

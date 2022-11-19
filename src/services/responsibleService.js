@@ -5,7 +5,14 @@ export async function insert(id, data) {
 }
 
 export async function get(id) {
-  return await responsibleRepository.getResponsibles(id);
+  const query = await responsibleRepository.getResponsibles(id);
+  if (!query) {
+    throw {
+      type: "notfound",
+      message: "responsible don't exist",
+    };
+  }
+  return query;
 }
 
 const responsibleServices = { insert, get };

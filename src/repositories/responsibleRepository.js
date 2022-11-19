@@ -1,10 +1,10 @@
 import db from "../database/db.js";
 
 export async function postResponsible(id, data) {
-  const { name, phone, CEP, isMainResponsible } = data;
+  const { name, phone, CEP, neighborhood, street, number, city, state, isMainResponsible } = data;
   return db.query(
-    `INSERT INTO responsibles (name, phone, "CEP", "isMainResponsible", "idCompany") VALUES ($1, $2, $3, $4, $5)`,
-    [name, phone, CEP, isMainResponsible, id]
+    `INSERT INTO responsibles (name, phone, "CEP", neighborhood, street, number, city, state, "isMainResponsible", "idCompany") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
+    [name, phone, CEP, neighborhood, street, number, city, state, isMainResponsible, id]
   );
 }
 

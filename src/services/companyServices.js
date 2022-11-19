@@ -5,11 +5,25 @@ export async function insert(id, data) {
 }
 
 export async function get(id) {
-  return await companyRepository.getCompany(id);
+  const query = await companyRepository.getCompany(id);
+  if (query.length == 0) {
+    throw {
+      type: "notfound",
+      message: "don't exist company",
+    };
+  }
+  return query;
 }
 
 export async function getById(id) {
-  return await companyRepository.getCompanyById(id);
+  const query = await companyRepository.getCompanyById(id);
+  if (query.length == 0) {
+    throw {
+      type: "notfound",
+      message: "don't exist company",
+    };
+  }
+  return query;
 }
 
 export async function updateById(id, data) {
